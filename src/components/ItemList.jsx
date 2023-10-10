@@ -9,14 +9,14 @@ const Item = (props) => {
 
   // Destructure itemsData
   const item = props.item;
-  const {todo, status} = item;
+  const {id, todo, status} = item;
 
   return (
     <li style={status ? {textDecoration: 'line-through'} : {} } className={`${styles.paddingY} px-4 flex justify-between items-center rounded-[20px] shadow-xl`}>
       <input type="checkbox" className="w-[20px] h-[20px]" />
-        {todo}
+      <p>{todo}</p>
       <div className="w-[35px] h-[35px] flex justify-center items-center rounded-full bg-dimRed">
-      <FontAwesomeIcon icon={faTrashCan} style={{color: "#ed0e0e",}} />
+        <FontAwesomeIcon icon={faTrashCan} style={{color: "#ed0e0e",}} />
       </div>
     </li>
   )
