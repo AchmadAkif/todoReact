@@ -2,6 +2,7 @@ import styles from "../style"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 import { useState } from "react"
+import { v4 as uuidv4} from 'uuid'
 
 const Input = () => {
   const [task, setTask] = useState('')
@@ -15,7 +16,7 @@ const Input = () => {
     };
 
     const newItem = {
-      id: Date.now(),
+      id: uuidv4(),
       todo: task, 
       status: false
     }
