@@ -8,6 +8,12 @@ const Input = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    // Dont execute this function when input is empty
+    if (task === ""){
+      return
+    };
+
     const newItem = {
       id: Date.now(),
       todo: task, 
