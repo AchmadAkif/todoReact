@@ -4,8 +4,8 @@ import itemsData from '../static/placeholder'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 
+
 const Item = (props) => {
-  const [checked, setChecked] = useState('');
 
   // Destructure itemsData
   const item = props.item;
@@ -13,7 +13,7 @@ const Item = (props) => {
 
   return (
     <li style={status ? {textDecoration: 'line-through'} : {} } className={`${styles.paddingY} px-4 flex justify-between items-center rounded-[20px] shadow-xl`}>
-      <input type="checkbox" className="w-[20px] h-[20px]" />
+      <input type="checkbox" className="w-[20px] h-[20px] accent-primary" />
       <p>{todo}</p>
       <div className="w-[35px] h-[35px] flex justify-center items-center rounded-full bg-dimRed">
         <FontAwesomeIcon icon={faTrashCan} style={{color: "#ed0e0e",}} />
@@ -21,8 +21,10 @@ const Item = (props) => {
     </li>
   )
 }
- 
+
+// Parent Component
 const ItemList = () => {
+
   return (
     <section className={`${styles.paddingX} ${styles.paddingY}`}>
       <ul className="flex flex-col space-y-5 font-inter font-bold text-[18px]">
