@@ -1,22 +1,28 @@
 import styles from "../style"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
+import { useState } from "react"
 
 const Input = () => {
-  return (
-    <div className="w-full h-14 flex items-center mb-5 px-5 border-[1px] border-primary rounded-[10px]" >
-      <input type="text" className="w-full h-full focus:outline-none" />
-      <FontAwesomeIcon icon={faCircleXmark} size="xl" style={{color: "#5438dc",}} />
-    </div>
-  )
-}
+  const [task, setTask] = useState('')
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert(task);
+  }
 
-const Button = () => {
+  const clearInput = () => {
+    setTask("");
+  }
+  
   return (
-    <div className="w-full h-14 flex justify-center items-center bg-primary rounded-[10px]">
-      <p className="font-inter font-medium text-[18px] text-white">Add Task</p>
-    </div>
+    <form onSubmit={handleSubmit} className="w-full h-14" >
+      <div className="w-full h-full flex items-center border-[1px] border-primary rounded-[10px] mb-5 px-5">
+        <input type="text" className="w-full h-full focus:outline-none" value={task} onChange={(e)=>{setTask(e.target.value)}} />
+        <FontAwesomeIcon onClick={clearInput} icon={faCircleXmark} size="xl" style={{color: "#5438dc",}} />
+      </div>
+      <button className="w-full h-14 flex justify-center items-center bg-primary rounded-[10px] font-inter font-medium text-[18px] text-white">Add Task</button>
+    </form>
   )
 }
 
@@ -24,7 +30,6 @@ const AddNew = () => {
   return (
     <section className={`w-full ${styles.paddingX} ${styles.paddingY} font-inter sticky bottom-0 bg-white`}>
       <Input />
-      <Button />
     </section>
   )
 }
