@@ -16,10 +16,18 @@ const App = () => {
     setItems(items.filter( item => item.id !== id))
   }
 
+  const handleFinishedItem = (id) => {
+    setItems(items.map( item => item.id === id ? {...item, status:!item.status} : {}))
+  }
+
+  const handleRemoveAllItems = () => {
+    console.log('Hapus')
+  }
+
   return (
     <section className='relative'>
-      <Header />
-      <ItemList items={items} onRemoveItem={handleRemoveItem} />
+      <Header onRemoveAllItems={handleRemoveAllItems} />
+      <ItemList items={items} onRemoveItem={handleRemoveItem} onCheckboxChange={handleFinishedItem} />
       <AddNew onAddItem={handleAddItem} />
     </section>
   )
