@@ -21,7 +21,7 @@ const App = () => {
   }
 
   const handleRemoveAllItems = () => {
-    console.log('Hapus')
+    setItems([])
   }
 
   return (
