@@ -1,15 +1,13 @@
 import { useState } from "react"
 import styles from "../style"
-import itemsData from '../static/placeholder'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
+import AddNew from "./AddNew"
 
 
 const Item = (props) => {
-
-  // Destructure itemsData
-  const item = props.item;
-  const {id, todo, status} = item;
+  const task = props.task;
+  const {todo, status} = task;
 
   return (
     <li style={status ? {textDecoration: 'line-through'} : {} } className={`${styles.paddingY} px-4 flex justify-between items-center rounded-[20px] shadow-xl`}>
@@ -23,13 +21,12 @@ const Item = (props) => {
 }
 
 // Parent Component
-const ItemList = () => {
-
+const ItemList = ({items}) => {
   return (
     <section className={`${styles.paddingX} ${styles.paddingY}`}>
       <ul className="flex flex-col space-y-5 font-inter font-bold text-[18px]">
-        {itemsData.map( item => (
-          <Item key={item.id} item={item} />
+        {items.map( task => (
+          <Item key={task.id} task={task} />
         ))}
       </ul>
     </section>

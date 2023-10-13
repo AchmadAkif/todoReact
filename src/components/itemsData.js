@@ -1,4 +1,4 @@
-const itemsData = [
+let itemsData = [
   {
     id: 1,
     todo: 'This is an example task',
