@@ -12,10 +12,14 @@ const App = () => {
     setItems([...items, item]);
   }
 
+  const handleRemoveItem = (id) => {
+    setItems(items.filter( item => item.id !== id))
+  }
+
   return (
     <section className='relative'>
       <Header />
-      <ItemList items={items} />
+      <ItemList items={items} onRemoveItem={handleRemoveItem} />
       <AddNew onAddItem={handleAddItem} />
     </section>
   )
