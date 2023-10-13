@@ -1,6 +1,6 @@
 import styles from "../style"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
+import { faCirclePlus } from '@fortawesome/free-solid-svg-icons'
 import { useState } from "react"
 import { v4 as uuidv4} from 'uuid'
 
@@ -34,9 +34,8 @@ const AddNew = ({onAddItem}) => {
       <form onSubmit={handleSubmit} className="w-full h-14" >
         <div className="w-full h-full flex items-center border-[1px] border-primary rounded-[10px] mb-5 px-5">
           <input type="text" className="w-full h-full focus:outline-none" value={task} onChange={(e)=>{setTask(e.target.value)}} />
-          <FontAwesomeIcon onClick={clearInput} icon={faCircleXmark} size="xl" style={{color: "#5438dc",}} className="cursor-pointer"/>
+          <FontAwesomeIcon onClick={handleSubmit} icon={faCirclePlus} size="xl" style={{color: "#5438dc",}} className="cursor-pointer"/>
         </div>
-        <button className="w-full h-14 flex justify-center items-center bg-primary rounded-[10px] font-inter font-medium text-[18px] text-white">Add Task</button>
       </form>
     </section>
   )
