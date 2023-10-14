@@ -17,7 +17,7 @@ const App = () => {
   }
 
   const handleFinishedItem = (id) => {
-    setItems(items.map( item => item.id === id ? {...item, status:!item.status} : {}))
+    setItems(items.map( item => item.id === id ? {...item, status: !item.status} : item))
   }
 
   const handleRemoveAllItems = () => {
@@ -25,8 +25,8 @@ const App = () => {
   }
 
   return (
-    <section className='relative'>
-      <Header onRemoveAllItems={handleRemoveAllItems} />
+    <section className='w-full h-[100vh] relative'>
+      <Header onRemoveAllItems={handleRemoveAllItems} items={items} />
       <ItemList items={items} onRemoveItem={handleRemoveItem} onCheckboxChange={handleFinishedItem} />
       <AddNew onAddItem={handleAddItem} />
     </section>
