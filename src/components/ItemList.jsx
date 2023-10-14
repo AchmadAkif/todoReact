@@ -31,15 +31,15 @@ const Item = ({task, onRemoveItem, onCheckboxChange}) => {
 const ItemList = ({items, onRemoveItem, onCheckboxChange}) => {
   if (items.length === 0) {
     return (
-      <section className="flex flex-col justify-center font-inter px-10">
+      <section className="flex flex-col justify-center font-inter px-10 h-full">
         <img src={img} alt="task empty" className="mb-3" />
-        <h1 className="text-center font-bold text-[25px]">Your Task List is empty!</h1>
+        <h1 className="text-center font-bold text-[25px] mb-">Your Task List is empty!</h1>
         <p className="text-center font-light text-grey">You don't have any active tasks right now. Try to add some!</p>
       </section>
     )
   } else {
     return (
-      <section className={`${styles.paddingX} ${styles.paddingY}`}>
+      <section className={`${styles.paddingX} ${styles.paddingY} h-full`}>
         <ul className="flex flex-col space-y-5 font-inter font-bold text-[18px]">
           {items.map( task => (
             <Item key={task.id} task={task} onRemoveItem={onRemoveItem} onCheckboxChange={onCheckboxChange} />

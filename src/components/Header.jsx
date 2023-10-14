@@ -5,7 +5,7 @@ const Header = ({onRemoveAllItems, items}) => {
   const checkedItems = items.filter( item => item.status).length
 
   return (
-    <section className={`${styles.paddingX} ${styles.paddingY} flex sm:justify-center justify-between items-center font-inter`}>
+    <section className={`${styles.paddingX} ${styles.paddingY} flex sm:justify-center justify-between items-center font-inter sticky top-0 bg-white`}>
       <div>
         <h1 className={`${styles.heading2} leading-[50px]`}>Today's Task</h1>
         <p className={`${styles.paragraph}`}>({checkedItems}/{totalItems}) Completed Task</p>
