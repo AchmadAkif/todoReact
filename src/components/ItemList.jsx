@@ -2,6 +2,7 @@ import { useState } from "react"
 import styles from "../style"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
+import img from '../assets/Asset 1.png'
 
 
 const Item = ({task, onRemoveItem, onCheckboxChange}) => {
@@ -28,16 +29,26 @@ const Item = ({task, onRemoveItem, onCheckboxChange}) => {
 
 // Parent Component
 const ItemList = ({items, onRemoveItem, onCheckboxChange}) => {
-
-  return (
-    <section className={`${styles.paddingX} ${styles.paddingY}`}>
-      <ul className="flex flex-col space-y-5 font-inter font-bold text-[18px]">
-        {items.map( task => (
-          <Item key={task.id} task={task} onRemoveItem={onRemoveItem} onCheckboxChange={onCheckboxChange} />
-        ))}
-      </ul>
-    </section>
-  )
+  if (items.length === 0) {
+    return (
+      <section className="flex flex-col justify-center font-inter px-10">
+        <img src={img} alt="task empty" className="mb-3" />
+        <h1 className="text-center font-bold text-[25px]">Your Task List is empty!</h1>
+        <p className="text-center font-light text-grey">You don't have any active tasks right now. Try to add some!</p>
+      </section>
+    )
+  } else {
+    return (
+      <section className={`${styles.paddingX} ${styles.paddingY}`}>
+        <ul className="flex flex-col space-y-5 font-inter font-bold text-[18px]">
+          {items.map( task => (
+            <Item key={task.id} task={task} onRemoveItem={onRemoveItem} onCheckboxChange={onCheckboxChange} />
+          ))}
+        </ul>
+      </section>
+    )
+  }
+  
 }
 
 export default ItemList
