@@ -40,7 +40,7 @@ const AddNew = ({onAddItem, onSortItems}) => {
           <FontAwesomeIcon onClick={handleSubmit} icon={faCirclePlus} size="xl" style={{color: "#5438dc",}} className="cursor-pointer"/>
         </div>
       </form>
-      <div onClick={() => setToggle(set => !set)} className="w-[50px] h-[50px] flex justify-center items-center rounded-full shadow-md absolute top-[-50px] right-[20px]">
+      <div onClick={() => setToggle(set => !set)} className="w-[50px] h-[50px] flex justify-center items-center bg-white rounded-full shadow-md absolute top-[-50px] right-[20px]">
         <FontAwesomeIcon icon={faArrowUpWideShort} style={{color: "#000000",}} />
       </div>
       <ul className={`${toggle ? 'block' : 'hidden'} flex flex-col items-start gap-2 absolute top-[-170px] right-[20px] bg-white p-3 rounded-[20px] shadow-md`}>
