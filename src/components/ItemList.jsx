@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import img from '../assets/Asset 1.png'
 
-
 const Item = ({task, onRemoveItem, onCheckboxChange}) => {
   const {id, todo, status} = task;
 
@@ -29,6 +28,7 @@ const Item = ({task, onRemoveItem, onCheckboxChange}) => {
 
 // Parent Component
 const ItemList = ({items, onRemoveItem, onCheckboxChange}) => {
+
   if (items.length === 0) {
     return (
       <section className="flex flex-col justify-center font-inter px-10 h-full">

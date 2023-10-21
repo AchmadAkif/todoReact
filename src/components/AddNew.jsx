@@ -1,11 +1,14 @@
 import styles from "../style"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons'
+import {faArrowUpWideShort} from '@fortawesome/free-solid-svg-icons'
 import { useState } from "react"
 import { v4 as uuidv4} from 'uuid'
 
-const AddNew = ({onAddItem}) => {
-  const [task, setTask] = useState('')
+//Add New task component
+const AddNew = ({onAddItem, onSortItems}) => {
+  const [task, setTask] = useState('');
+  const [toggle, setToggle] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,6 +40,14 @@ const AddNew = ({onAddItem}) => {
           <FontAwesomeIcon onClick={handleSubmit} icon={faCirclePlus} size="xl" style={{color: "#5438dc",}} className="cursor-pointer"/>
         </div>
       </form>
+      <div onClick={() => setToggle(set => !set)} className="w-[50px] h-[50px] flex justify-center items-center rounded-full shadow-md absolute top-[-50px] right-[20px]">
+        <FontAwesomeIcon icon={faArrowUpWideShort} style={{color: "#000000",}} />
+      </div>
+      <ul className={`${toggle ? 'block' : 'hidden'} flex flex-col items-start gap-2 absolute top-[-170px] right-[20px] bg-white p-3 rounded-[20px] shadow-md`}>
+        <button value='input' onClick={(e) => onSortItems(e.target.value)}>Sort By Input</button>
+        <button value='name' onClick={(e) => onSortItems(e.target.value)}>Sort By Name</button>
+        <button value='checked' onClick={(e) => onSortItems(e.target.value)}>Sort By Checked</button>
+      </ul>
     </section>
   )
 }

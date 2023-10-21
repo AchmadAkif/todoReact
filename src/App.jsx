@@ -24,11 +24,25 @@ const App = () => {
     setItems([])
   }
 
+  //Sort Items Function
+  const [sortBy, setSortBy] = useState()
+  let sortedItems;
+
+  if (sortBy === 'input') {
+    console.log('input')
+  }
+  if (sortBy === 'name') {
+    console.log('name')
+  }
+  if (sortBy === 'checked') {
+    console.log('checked')
+  }
+
   if (items.length == 0) {
     return (
       <section className='w-full h-[100vh] relative'>
         <ItemList items={items} onRemoveItem={handleRemoveItem} onCheckboxChange={handleFinishedItem} />
-        <AddNew onAddItem={handleAddItem} />
+        <AddNew onAddItem={handleAddItem} onSortItems={setSortBy} />
       </section>
     )
   } else {
@@ -36,7 +50,7 @@ const App = () => {
       <section className='w-full h-[100vh] relative'>
         <Header onRemoveAllItems={handleRemoveAllItems} items={items} />
         <ItemList items={items} onRemoveItem={handleRemoveItem} onCheckboxChange={handleFinishedItem} />
-        <AddNew onAddItem={handleAddItem} />
+        <AddNew onAddItem={handleAddItem} onSortItems={setSortBy} />
       </section>
     )
   }
