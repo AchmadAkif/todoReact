@@ -16,7 +16,7 @@ const Item = ({task, onRemoveItem, onCheckboxChange}) => {
   }
 
   return (
-    <li style={status ? {textDecoration: 'line-through'} : {} } className={`${styles.paddingY} px-4 flex justify-between items-center rounded-[20px] shadow-xl`}>
+    <li style={status ? {textDecoration: 'line-through'} : {} } className={`${styles.paddingY} px-4 flex justify-between items-center rounded-[20px] border-[1px] border-[rgb(109,40,217)]  shadow-[5px_5px_0px_0px_rgba(109,40,217)]`}>
       <input type="checkbox" className="w-[20px] h-[20px] accent-primary" onChange={() => handleCheckbox(id)} />
       <p>{todo}</p>
       <div className="w-[35px] h-[35px] flex justify-center items-center rounded-full bg-dimRed cursor-pointer" onClick={() => handleDelete(id)}>
@@ -48,7 +48,7 @@ const ItemList = ({items, onRemoveItem, onCheckboxChange}) => {
       </section>
     )
   }
-  
 }
 
 export default ItemList
+

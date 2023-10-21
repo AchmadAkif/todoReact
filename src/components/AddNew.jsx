@@ -33,7 +33,7 @@ const AddNew = ({onAddItem, onSortItems}) => {
   }
   
   return (
-    <section className={`w-full ${styles.paddingX} py-5 font-inter fixed bottom-0 bg-white`}>
+    <section className={`w-full ${styles.paddingX} py-5 font-inter sticky bottom-0 bg-white`}>
       <form onSubmit={handleSubmit} className="w-full h-14" >
         <div className="w-full h-full flex items-center border-[1px] border-primary rounded-[10px] mb-5 px-5">
           <input type="text" className="w-full h-full focus:outline-none" value={task} onChange={(e)=>{setTask(e.target.value)}} />
