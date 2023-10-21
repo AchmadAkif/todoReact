@@ -25,23 +25,23 @@ const App = () => {
   }
 
   //Sort Items Function
-  const [sortBy, setSortBy] = useState()
+  const [sortBy, setSortBy] = useState('input')
   let sortedItems;
 
   if (sortBy === 'input') {
-    console.log('input')
+    sortedItems = items
   }
   if (sortBy === 'name') {
-    console.log('name')
+    sortedItems = items.slice().sort((a,b) => a.todo.localeCompare(b.todo))
   }
   if (sortBy === 'checked') {
-    console.log('checked')
+    sortedItems = items.slice().sort((a,b) => a.status - b.status)
   }
 
   if (items.length == 0) {
     return (
       <section className='w-full h-[100vh] relative'>
-        <ItemList items={items} onRemoveItem={handleRemoveItem} onCheckboxChange={handleFinishedItem} />
+        <ItemList items={sortedItems} onRemoveItem={handleRemoveItem} onCheckboxChange={handleFinishedItem} />
         <AddNew onAddItem={handleAddItem} onSortItems={setSortBy} />
       </section>
     )
@@ -49,7 +49,7 @@ const App = () => {
     return (
       <section className='w-full h-[100vh] relative'>
         <Header onRemoveAllItems={handleRemoveAllItems} items={items} />
-        <ItemList items={items} onRemoveItem={handleRemoveItem} onCheckboxChange={handleFinishedItem} />
+        <ItemList items={sortedItems} onRemoveItem={handleRemoveItem} onCheckboxChange={handleFinishedItem} />
         <AddNew onAddItem={handleAddItem} onSortItems={setSortBy} />
       </section>
     )
