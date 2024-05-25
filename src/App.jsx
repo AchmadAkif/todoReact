@@ -3,26 +3,51 @@ import './App.css'
 import AddNew from './components/AddNew'
 import Header from './components/Header'
 import ItemList from './components/ItemList'
-import itemsData from './components/itemsData'
+import useFetch from './utils/useFetch'
+
 
 const App = () => {
-  const [items, setItems] = useState(itemsData);
+  const {data: items, isLoading} = useFetch('http://localhost:5000/todos');
+
+  const handleAddItem = async (task) => {
+    // Dont execute this function when input is empty
+    if (task === ""){
+      return;
+    };
+
+    try {
+      const body = { desc: task }
+      const response = await fetch('http://localhost:5000/todos', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+
+      console.log(response);
+      setTask('');
+    } catch (err) {
+      console.error(err);
+    }
+
+    window.location = '/';
+  };
   
-  const handleAddItem = (item) => {
-    setItems([...items, item]);
-  }
+  const handleRemoveItem = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:5000/todos/${id}`, {
+        method: 'DELETE',
+      });
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
 
-  const handleRemoveItem = (id) => {
-    setItems(items.filter( item => item.id !== id))
-  }
-
-  const handleFinishedItem = (id) => {
-    setItems(items.map( item => item.id === id ? {...item, status: !item.status} : item))
-  }
-
+    window.location = '/';
+  };
+  
   const handleRemoveAllItems = () => {
-    setItems([])
-  }
+    setItems([]);
+  };
 
   //Sort Items Function
   const [sortBy, setSortBy] = useState('input')
@@ -38,22 +63,19 @@ const App = () => {
     sortedItems = items.slice().sort((a,b) => a.status - b.status)
   }
 
-  if (items.length == 0) {
-    return (
-      <section className='w-full h-[100vh] relative'>
-        <ItemList items={sortedItems} onRemoveItem={handleRemoveItem} onCheckboxChange={handleFinishedItem} />
-        <AddNew onAddItem={handleAddItem} onSortItems={setSortBy} />
-      </section>
-    )
-  } else {
-    return (
-      <section className='w-full h-[100vh] relative'>
-        <Header onRemoveAllItems={handleRemoveAllItems} items={items} />
-        <ItemList items={sortedItems} onRemoveItem={handleRemoveItem} onCheckboxChange={handleFinishedItem} />
-        <AddNew onAddItem={handleAddItem} onSortItems={setSortBy} />
-      </section>
-    )
-  }
+  return (
+    isLoading 
+    
+    ?
+    null
+    
+    :
+    <section className='w-full h-[100vh] relative'>
+      {items.length !== 0 ? <Header onRemoveAllItems={handleRemoveAllItems} items={items} /> : null}
+      <ItemList items={sortedItems} onRemoveItem={handleRemoveItem} />
+      <AddNew onAddItem={handleAddItem} onSortItems={setSortBy} />
+    </section>
+  )
 }
 
 export default App
